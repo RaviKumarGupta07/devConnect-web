@@ -1,9 +1,13 @@
 import {useNavigate} from "react-router";
+import {useSelector} from "react-redux" ;
 
 const Navbar = () => {
     const navigate = useNavigate();
+    const user = useSelector((store)=>store.user);
+    if(!user)navigate("/login");
+    // console.log(user);
     return (
-        <div className="navbar bg-base-100 shadow-sm pr-16">
+        <div className="navbar bg-base-300 shadow-sm pr-16">
             <div className="flex-1" >
                 <a className="btn btn-ghost text-xl"
                 onClick={()=>{
@@ -11,7 +15,8 @@ const Navbar = () => {
                 }}
                 >DevConnect</a>
             </div>
-            <div className="flex gap-2 ">
+            {user && <div className="flex gap-2 items-center">
+                <h1 className="mx-2">Hi , {user.firstName}</h1>
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
@@ -33,7 +38,7 @@ const Navbar = () => {
                         <li><a>Logout</a></li>
                     </ul>
                 </div>
-            </div>
+            </div>}
         </div>
     )
 }
