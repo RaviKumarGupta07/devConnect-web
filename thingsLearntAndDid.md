@@ -29,3 +29,27 @@
 - login and see if your data is coming properly in the store or not 
 - Navbar should update as soon as user logs in
 - refactor our code to add constants file + create a components/folder
+
+## 3
+- you should not be access other routes without login (simple : if(!user) return )
+- if token is not present redirect user to login
+    - approach - when you will make /profile req it will automatically give you error response and status(401)
+    - use that status(401) :
+
+            catch(err){
+                if(err?.response?.status === 401){
+                    return navigate("/login");
+            }}
+
+- made axios.get request for user Feed and add the feed in the store
+- built the **UserCard.jsx**
+    - for now lets make **< UserCard user={feed[0]}/>**
+    - we will add some features later
+- then we built profile page
+    - profile page have 
+        - < EditProfile/> 
+        - this EditProfile component has feature of editing user profile as well as it shows preview User card along with profile editing
+        - when user clicks update profile , axios.patch request is made
+- after save profile it shows toast : 
+    - toast message : **Dear {firstName} , your profile updated successfully**
+- gender is dropdown in editing form
