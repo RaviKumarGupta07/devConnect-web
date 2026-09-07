@@ -30,6 +30,7 @@ const Navbar = () => {
                 >DevConnect</a>
             </div>
             {user && <div className="flex gap-2 items-center">
+                <input type="checkbox" value="synthwave" className="toggle theme-controller" />
                 <h1 className="mx-2">Hi , {user.firstName}</h1>
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
