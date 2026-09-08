@@ -7,13 +7,16 @@ import { addUser } from "../redux/userSlice";
 const EditProfile = ({ user }) => {
     const [firstName, setFirstName] = useState(user?.firstName);
     const [lastName, setLastName] = useState(user?.lastName);
-    const [about, setAbout] = useState(user?.about);
+    const [about, setAbout] = useState(user?.about || "");
     const [photoURL, setPhotoURL] = useState(user?.photoURL);
-    const [skills, setSkills] = useState(user?.skills);
-    const [age, setAge] = useState(user?.age);
-    const [gender, setGender] = useState(user?.gender);
+    const [skills, setSkills] = useState(user?.skills || []);
+    const [age, setAge] = useState(user?.age || "");
+    const [gender, setGender] = useState(user?.gender || "");
     const [error, setError] = useState("");
     const [showToast, setShowToast] = useState(false);
+    const [skillsInput, setSkillsInput] = useState(
+        user?.skills?.join(", ") || ""
+    );
 
     const dispatch = useDispatch();
 
@@ -83,7 +86,7 @@ const EditProfile = ({ user }) => {
                     />
 
                     <label className="label">gender</label>
-                    <select defaultValue={gender} className="select select-secondary"
+                    <select defaultValue={gender || "select your gender"} className="select select-secondary"
                         onChange={(e) => { setGender(e.target.value) }}>
                         <option disabled={true}>select your gender</option>
                         <option>male</option>
@@ -91,10 +94,17 @@ const EditProfile = ({ user }) => {
                         <option>other</option>
                     </select>
 
-                    <label className="label">skills</label>
-                    <input type="text" value={skills.join(" ")} className="input"
+                    <label className="label">skills (keep skills comma(",") separated)</label>
+                    <input type="text" value={skillsInput} className="input"
                         onChange={(e) => {
-                            setSkills(e.target.value.split(" "));
+                            const value = e.target.value;
+                            setSkillsInput(e.target.value);
+                            setSkills(
+                                value
+                                    .split(",")
+                                    .map(skill => skill.trim())
+                                    .filter(skill => skill !== "")
+                            );
                         }}
                     />
 
@@ -105,7 +115,7 @@ const EditProfile = ({ user }) => {
                 </fieldset>
             </div>
             <div>
-                <PreviewUserCard user={{ firstName, lastName, age, gender, skills, about, photoURL }} />
+                <PreviewUserCard user={{ firstName, lastName, age, gender, skillsInput, about, photoURL }} />
             </div>
         </div>
     ))

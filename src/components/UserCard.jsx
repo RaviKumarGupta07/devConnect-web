@@ -1,6 +1,23 @@
+import { useDispatch } from "react-redux";
+import { BASE_URL } from "../utils/constants";
+import { addError } from "../redux/errorSlice";
+import axios from "axios";
+import { removeFeedHavingId } from "../redux/feedSlice";
+
 const UserCard = ({ user }) => {
+    const dispatch = useDispatch();
     if (!user) return;
-    const { firstName, lastName, photoURL, age, about, gender, skills } = user;
+    const { _id ,firstName, lastName, photoURL, age, about, gender, skills } = user;
+    
+    const handleClick = async(_id,status)=>{
+        try{
+            await axios.post(BASE_URL+"/request/send/"+status+"/"+_id , {} , {withCredentials:true});
+            dispatch(removeFeedHavingId(_id));
+        }catch(err){
+            dispatch(addError(err.response.data));
+        }
+    }
+
     return (
         <>
             <div className="card bg-base-300 my-4 w-96 shadow-sm">
@@ -12,7 +29,7 @@ const UserCard = ({ user }) => {
                 <div className="card-body">
                     <h2 className="card-title">{firstName} {lastName}</h2>
                     <h3>
-                        <span>{age}y </span>
+                        {age&&<span>{age}y </span>}
                         <span>{gender}</span>
                     </h3>
                     <div className="flex flex-row gap-3">
@@ -24,8 +41,12 @@ const UserCard = ({ user }) => {
                     </div>
                     <p>{about}</p>
                     <div className="card-actions justify-between">
-                        <button className="btn btn-secondary">Ignore</button>
-                        <button className="btn btn-primary">Show Interest</button>
+                        <button className="btn btn-secondary"
+                        onClick={()=>{handleClick(_id,"ignored")}}
+                        >Ignore</button>
+                        <button className="btn btn-primary"
+                        onClick={()=>{handleClick(_id,"interested")}}
+                        >Interested</button>
                     </div>
                 </div>
             </div>

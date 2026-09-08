@@ -1,6 +1,6 @@
 const PreviewUserCard = ({ user }) => {
     if (!user) return;
-    const { firstName, lastName, photoURL, age, about, gender, skills } = user;
+    const { firstName, lastName, photoURL, age, about, gender, skillsInput } = user;
     return (
         <>
             <div className="card bg-base-300 my-4 w-96 shadow-sm">
@@ -12,15 +12,15 @@ const PreviewUserCard = ({ user }) => {
                 <div className="card-body">
                     <h2 className="card-title">{firstName} {lastName}</h2>
                     <h3>
-                        <span>{age}y </span>
-                        <span>{gender}</span>
+                        {age && <span>{age}y </span>}
+                        {gender && <span>{gender}</span>}
                     </h3>
                     <div className="flex flex-row gap-3">
-                        <h3 className="badge badge-secondary shrink-0">skills : </h3>
-                        <ul className="flex flex-wrap gap-2 ">{skills.map(skill => {
-                            return <li key={skill} className="badge badge-accent">{skill} </li>
-                        })}
-                        </ul>
+                        {skillsInput && (
+                            <>
+                                <h3 className="badge badge-secondary shrink-0">skills : </h3>
+                                <p className="badge badge-accent min-w-0 h-auto">{skillsInput}</p>
+                            </>)}
                     </div>
                     <p>{about}</p>
                 </div>
