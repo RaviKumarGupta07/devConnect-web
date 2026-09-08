@@ -82,6 +82,10 @@
                 return newArr ;
             }
 
-- remaining item
-- signup
-- e2e
+## 5
+- built signup form (converting the login form into signup form)
+- Backend : when user signs up then 
+    - generate a token
+    - send that token as res.cookies
+    - send the saved user in response
+- after user signs up navigate user to "/profile" path

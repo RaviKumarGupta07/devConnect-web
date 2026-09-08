@@ -20,12 +20,12 @@ const Login = () => {
     const [isSignUpForm, setIsSignupForm] = useState(false);
 
     const user = useSelector(store => store.user);
-    if (user&&!isSignUpForm) return <Navigate to="/" />
+    if (user && !isSignUpForm) return <Navigate to="/" />
 
     const handleSignupClick = async () => {
         try {
-            if (firstName.trim() === "" || firstName.length < 3 || firstName.length>20) throw new Error("first name must have atleast 3 character and maximum 20 characters");
-            if(lastName && lastName.length>20)throw new Error("lastname must have maximum 20 characters");
+            if (firstName.trim() === "" || firstName.length < 3 || firstName.length > 20) throw new Error("first name must have atleast 3 character and maximum 20 characters");
+            if (lastName && lastName.length > 20) throw new Error("lastname must have maximum 20 characters");
             if (!validator.isEmail(email)) throw new Error("email is not valid , please write a valid email");
             if (!validator.isStrongPassword(password)) throw new Error("please enter a strong password hanving => minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1")
 
