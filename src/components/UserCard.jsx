@@ -32,13 +32,13 @@ const UserCard = ({ user }) => {
                         {age&&<span>{age}y </span>}
                         <span>{gender}</span>
                     </h3>
-                    <div className="flex flex-row gap-3">
+                    {skills&&skills.length>0&&(<div className="flex flex-row gap-3">
                         <h3 className="badge badge-secondary shrink-0">skills : </h3>
                         <ul className="flex flex-wrap gap-2">{skills.map(skill => {
                             return <li key={skill} className="badge badge-accent">{skill} </li>
                         })}
                         </ul>
-                    </div>
+                    </div>)}
                     <p>{about}</p>
                     <div className="card-actions justify-between">
                         <button className="btn btn-secondary"

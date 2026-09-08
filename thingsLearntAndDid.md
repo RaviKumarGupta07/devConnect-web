@@ -21,7 +21,7 @@
 - FRONTEND : whenever you are making API call so pass with 
         
         {withCredentials : true}
-        
+
     - it will allow browser to store the cookie (for http url in our case)
     - GYAN : but in production our requests will be in https so cookie will be stored after login automatically  
 - install redux toolkit then setup => 
@@ -81,3 +81,7 @@
                 const newArr = state.filter(feed=>feed._id!==action.payload);
                 return newArr ;
             }
+
+- remaining item
+- signup
+- e2e
