@@ -16,8 +16,12 @@
 - created a login page (using daisy UI)
 - install axios
 - BACKEND : CORS - install CORS in backend => add middleware with configurations => 
-    - origin :"http://localhost:5173" , credentials:true
-- FRONTEND : whenever you are making API call so pass with {withCredentials : true}
+        
+        - origin :"http://localhost:5173" , credentials:true
+- FRONTEND : whenever you are making API call so pass with 
+        
+        {withCredentials : true}
+        
     - it will allow browser to store the cookie (for http url in our case)
     - GYAN : but in production our requests will be in https so cookie will be stored after login automatically  
 - install redux toolkit then setup => 
@@ -53,3 +57,27 @@
 - after save profile it shows toast : 
     - toast message : **Dear {firstName} , your profile updated successfully**
 - gender is dropdown in editing form
+
+## 4
+- connections page created
+    - created card like this [img + details]
+- requests page created
+    - created card like this [img + details + buttons[accept/reject]]
+    - built **accept / reject** button handle function
+        - made an api call to handle this
+    - also updated our redux store after sending reques
+
+            removeRequestHaving_id:(state,action)=>{
+                const newArr = state.filter(request=>request.fromUserId._id!==action.payload);
+                return newArr;
+            },
+
+- feed page 
+    - built **ignore / interested** button handle function
+        - made an api call to handle this
+    - also updated our redux store after sending reques
+    
+            removeFeedHavingId:(state,action)=>{
+                const newArr = state.filter(feed=>feed._id!==action.payload);
+                return newArr ;
+            }
