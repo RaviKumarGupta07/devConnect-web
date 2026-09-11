@@ -1,4 +1,3 @@
-# devConnect
 
 ## 1
 - created a vite + react application
@@ -89,3 +88,27 @@
     - send that token as res.cookies
     - send the saved user in response
 - after user signs up navigate user to "/profile" path
+
+## aws deployment
+- first we created an account on aws
+- launched instance
+- for mac or linux
+    -   chmod 400 APP-secret.pem
+- for windows 
+    -  icacls "APP-secret.pem" /inheritance:r
+    -  icacls "APP-secret.pem" /grant:r "$($env:USERNAME):(R)"
+-  ssh -i "APP-secret.pem" ubuntu@13.60.99.134
+- installing nvm (node version manager ) and node
+-   git clone https:://githubRepoURL
+    - frontend 
+        - npm install
+        - npm run build
+        -  sudo apt update
+        -  sudo apt install nginx -y
+        -  sudo systemctl start nginx
+        -  sudo systemctl enable nginx
+        -  sudo scp -r dist/* /var/www/html/
+        - enable port 80 of your instance
+
+
+
