@@ -11,8 +11,8 @@ import validator from 'validator';
 const Login = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("ravi@gmail.com");
-    const [password, setPassword] = useState("Ravi@1234");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [type, setType] = useState('password');
     const dispatch = useDispatch();
     const navigate = useNavigate();
