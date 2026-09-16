@@ -306,6 +306,3 @@ now your project is successfull brought in your local machine
 -  **Note** : Use http://, NOT https:// unless you've configured SSL/HTTPS.
 
 
-
-## Backend deployment
-    - 

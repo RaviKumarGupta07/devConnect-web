@@ -109,6 +109,24 @@
         -  sudo systemctl enable nginx
         -  sudo scp -r dist/* /var/www/html/
         - enable port 80 of your instance
+- git clone https://githubRepoURL
+    - backend
+        - cd DevConnect-backend
+        - npm install
+        - npm start
+        - npm install pm2 -g
+        - pm2 start npm --name DevTinder-backend -- start
+        - pm2 status
+        - NGINX
+            - sudo nano /etc/nginx/sites-available/default
+            - add:
+
+                location /api/ {
+                    proxy_pass http://localhost:7777/;
+                }
+
+            - sudo nginx -t
+            - sudo systemctl reload nginx
 
 
 

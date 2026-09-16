@@ -3,6 +3,7 @@ import { BASE_URL } from "../utils/constants";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../redux/connectionsSlice";
+import { Link } from "react-router";
 
 const Connections = () => {
     const dispatch = useDispatch();
@@ -22,14 +23,14 @@ const Connections = () => {
 
     if (!connections) return;
     if (connections.length === 0) return (<h1 className="flex my-4 text-2xl fnt-bold justify-center"> No connection found </h1>)
-    
+
 
     return (
         <div className="">
             <div className="text-3xl font-semibold justify-center flex my-4">Connections</div>
             <div className="w-1/2 m-auto my-2 flex flex-col gap-2">
                 {connections.map(user => {
-                    const {_id,firstName,lastName,age,gender,about,skills,photoURL} = user ;
+                    const { _id, firstName, lastName, age, gender, about, skills, photoURL } = user;
                     return (
                         <div className="flex bg-base-300 rounded-2xl " key={_id}>
                             {/* img */}
@@ -39,12 +40,17 @@ const Connections = () => {
                             {/* details */}
                             <div className="p-2 flex-1">
                                 <h2 className="text-xl font-bold">{firstName + " " + lastName}</h2>
-                                {age&&gender&&<h3> {age + "y " + gender } </h3>}
-                                {about&&<p>{about}</p>}
-                                {skills&&(skills.length>0)&&<div className="flex">
-                                        <h4 className="bg-primary badge mr-2">{"skills"+" : "}</h4>
-                                        <p className="badge bg-secondary overflow-x-auto"> {skills.join(" , ")} </p>
-                                    </div>}
+                                {age && gender && <h3> {age + "y " + gender} </h3>}
+                                {about && <p>{about}</p>}
+                                {skills && (skills.length > 0) && <div className="flex">
+                                    <h4 className="bg-primary badge mr-2">{"skills" + " : "}</h4>
+                                    <p className="badge bg-secondary overflow-x-auto"> {skills.join(" , ")} </p>
+                                </div>}
+                            </div>
+                            <div className="my-auto">
+                                <button className="btn btn-success rounded mx-2 ">
+                                    <Link to={"/chat/"+_id} >Chat</Link>
+                                </button>
                             </div>
                         </div>
                     )
