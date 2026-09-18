@@ -914,3 +914,43 @@ http://YOUR_SERVER_IP/api/user/feed
 http://     ✅
 https://    ❌ unless SSL is configured
 ```
+## Added `.env` File in Remote Machine
+
+- Opened the backend folder in the remote EC2 machine.
+- Created a new `.env` file:
+
+      nano .env
+
+- This creates a new `.env` file at the root of the backend folder. Paste all the required environment variables into this file.
+
+## Nginx Path Configuration
+
+- Opened the Nginx configuration file on the AWS remote machine:
+
+      sudo nano /etc/nginx/sites-available/default
+
+- Updated the configuration so that `/api/` requests are forwarded to the backend running on port `7777` and all other routes are handled by the React frontend:
+
+      location /api/ {
+              proxy_pass http://localhost:7777/;
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+      }
+
+      location / {
+              try_files $uri $uri/ /index.html;
+      }
+
+- Test the Nginx configuration before reloading:
+
+      sudo nginx -t
+
+- If the configuration test is successful, reload the Nginx server:
+
+      sudo systemctl reload nginx
+
+- Check Nginx status if required:
+
+      sudo systemctl status nginx

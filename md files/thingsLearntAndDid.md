@@ -136,11 +136,43 @@
             - chats
             - if new msg alert popup for 3 sec
             - <input> <send btn>
-            
+
         - npm pckg socket.io setup in backend
             - event emit and handiling logic 
             - then chat model created 
             - while messageSend event emits then chats are saved inside database
             - created get /chats/:receiverId api to get all the chats of the user
                 - the whole setup is inside socketIo_setup_guide.md
-        
+
+- added env file in remote machine
+    - opened backend folder in remote machine 
+    - run command 
+
+            nano .env
+            // it will create a new .env file at root of the backend folder and then paste all your env variables over there
+
+- nginx path configure 
+    - open aws remote machine server
+
+            sudo nano /etc/nginx/sites-available/default
+
+    - updated code so that all routes are handled
+
+            location /api/ {
+                    # First attempt to serve request as file, then
+                    # as directory, then fall back to displaying a 404.
+                    # try_files $uri $uri/ =404;
+                    proxy_pass http://localhost:7777/;
+                    proxy_set_header Host $host;
+                    proxy_set_header X-Real-IP $remote_addr;
+                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                    proxy_set_header X-Forwarded-Proto $scheme;
+            }
+
+            location / {
+                    try_files $uri /index.html ;
+            } 
+
+    - reload nginx server
+
+            sudo systemctl reload nginx
