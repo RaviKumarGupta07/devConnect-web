@@ -413,7 +413,7 @@ npm install pm2 -g
 Start your backend:
 
 ``` bash
-pm2 start npm --name DevTinder-backend -- start
+pm2 start npm --name DevConnect-backend -- start
 ```
 
 **Important:** `-- start` passes `start` to npm.
@@ -421,13 +421,13 @@ pm2 start npm --name DevTinder-backend -- start
 Do **not** write:
 
 ``` bash
-pm2 start npm --name DevTinder-backend -- save
+pm2 start npm --name DevConnect-backend -- save
 ```
 
 `save` is not the npm script you want here. The correct command is:
 
 ``` bash
-pm2 start npm --name DevTinder-backend -- start
+pm2 start npm --name DevConnect-backend -- start
 ```
 
 Check PM2:
@@ -439,7 +439,7 @@ pm2 status
 View logs:
 
 ``` bash
-pm2 logs DevTinder-backend
+pm2 logs DevConnect-backend
 ```
 
 Exit the live log view with:
@@ -451,9 +451,9 @@ Ctrl + C
 Useful commands:
 
 ``` bash
-pm2 restart DevTinder-backend
-pm2 stop DevTinder-backend
-pm2 delete DevTinder-backend
+pm2 restart DevConnect-backend
+pm2 stop DevConnect-backend
+pm2 delete DevConnect-backend
 pm2 status
 ```
 
@@ -665,7 +665,7 @@ Then SSH into EC2:
 cd ~/DevConnect-backend
 git pull
 npm install
-pm2 restart DevTinder-backend
+pm2 restart DevConnect-backend
 pm2 status
 ```
 
@@ -676,7 +676,7 @@ You can normally use:
 ``` bash
 cd ~/DevConnect-backend
 git pull
-pm2 restart DevTinder-backend
+pm2 restart DevConnect-backend
 ```
 
 ### If `package.json` changed
@@ -687,7 +687,7 @@ Use:
 cd ~/DevConnect-backend
 git pull
 npm install
-pm2 restart DevTinder-backend
+pm2 restart DevConnect-backend
 ```
 
 You do **not** need to reinstall PM2 or NGINX after every code update.
@@ -722,7 +722,7 @@ No NGINX reconfiguration is needed just because frontend files changed.
 
 ``` bash
 pm2 status
-pm2 logs DevTinder-backend --lines 50
+pm2 logs DevConnect-backend --lines 50
 ```
 
 Check port:
@@ -741,14 +741,14 @@ If the PM2 process is missing:
 
 ``` bash
 cd ~/DevConnect-backend
-pm2 start npm --name DevTinder-backend -- start
+pm2 start npm --name DevConnect-backend -- start
 ```
 
 If the PM2 process is broken:
 
 ``` bash
-pm2 delete DevTinder-backend
-pm2 start npm --name DevTinder-backend -- start
+pm2 delete DevConnect-backend
+pm2 start npm --name DevConnect-backend -- start
 ```
 
 ------------------------------------------------------------------------
@@ -839,7 +839,7 @@ http://YOUR_SERVER_IP
 ``` bash
 cd ~/DevConnect-backend
 npm install
-pm2 start npm --name DevTinder-backend -- start
+pm2 start npm --name DevConnect-backend -- start
 pm2 status
 ```
 
@@ -857,7 +857,7 @@ pm2 save
 cd ~/DevConnect-backend
 git pull
 npm install
-pm2 restart DevTinder-backend
+pm2 restart DevConnect-backend
 ```
 
 ## Frontend update
@@ -881,7 +881,7 @@ sudo systemctl reload nginx
 
 ``` bash
 pm2 status
-pm2 logs DevTinder-backend --lines 50
+pm2 logs DevConnect-backend --lines 50
 sudo ss -ltnp | grep :7777
 curl http://localhost:7777/user/feed
 ```

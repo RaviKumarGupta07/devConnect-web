@@ -2,7 +2,7 @@
 
 > **Backend:** `~/DevConnect-backend`\
 > **Port:** `7777`\
-> **PM2 name:** `DevTinder-backend`\
+> **PM2 name:** `DevConnect-backend`\
 > **NGINX:** port `80`
 
 ------------------------------------------------------------------------
@@ -108,7 +108,7 @@ Start the backend:
 
 ``` bash
 cd ~/DevConnect-backend
-pm2 start npm --name DevTinder-backend -- start
+pm2 start npm --name DevConnect-backend -- start
 ```
 
 Check:
@@ -120,13 +120,13 @@ pm2 status
 It should show:
 
 ``` text
-DevTinder-backend   online
+DevConnect-backend   online
 ```
 
 Check logs:
 
 ``` bash
-pm2 logs DevTinder-backend --lines 50
+pm2 logs DevConnect-backend --lines 50
 ```
 
 Exit logs with:
@@ -140,7 +140,7 @@ Ctrl + C
 **Wrong:**
 
 ``` bash
-pm2 start npm --name DevTinder-backend -- save
+pm2 start npm --name DevConnect-backend -- save
 ```
 
 This caused:
@@ -152,7 +152,7 @@ Unknown command: "save"
 **Correct:**
 
 ``` bash
-pm2 start npm --name DevTinder-backend -- start
+pm2 start npm --name DevConnect-backend -- start
 ```
 
 `pm2 save` is a separate command.
@@ -446,14 +446,14 @@ First SSH into EC2, then:
 cd ~/DevConnect-backend
 git pull
 npm install
-pm2 restart DevTinder-backend
+pm2 restart DevConnect-backend
 pm2 status
 ```
 
 Then check logs if needed:
 
 ``` bash
-pm2 logs DevTinder-backend --lines 50
+pm2 logs DevConnect-backend --lines 50
 ```
 
 ### Do I always need `npm install`?
@@ -464,7 +464,7 @@ If only backend source files changed:
 
 ``` bash
 git pull
-pm2 restart DevTinder-backend
+pm2 restart DevConnect-backend
 ```
 
 is normally enough.
@@ -474,7 +474,7 @@ If `package.json` / dependencies changed:
 ``` bash
 git pull
 npm install
-pm2 restart DevTinder-backend
+pm2 restart DevConnect-backend
 ```
 
 ### Simple safe workflow
@@ -485,7 +485,7 @@ If you don't want to think about whether dependencies changed:
 cd ~/DevConnect-backend
 git pull
 npm install
-pm2 restart DevTinder-backend
+pm2 restart DevConnect-backend
 ```
 
 ------------------------------------------------------------------------
@@ -497,7 +497,7 @@ Make sure the new environment values exist on EC2.
 Then:
 
 ``` bash
-pm2 restart DevTinder-backend
+pm2 restart DevConnect-backend
 ```
 
 Do **not** put secrets such as `.env`, passwords, JWT secrets, or API
@@ -514,7 +514,7 @@ For normal backend code updates:
 ``` bash
 git pull
 npm install       # only if needed
-pm2 restart DevTinder-backend
+pm2 restart DevConnect-backend
 ```
 
 You do **not** need:
@@ -537,11 +537,11 @@ Check:
 pm2 status
 ```
 
-If `DevTinder-backend` does not exist:
+If `DevConnect-backend` does not exist:
 
 ``` bash
 cd ~/DevConnect-backend
-pm2 start npm --name DevTinder-backend -- start
+pm2 start npm --name DevConnect-backend -- start
 ```
 
 Then:
@@ -557,7 +557,7 @@ pm2 status
 Run:
 
 ``` bash
-pm2 logs DevTinder-backend --lines 50
+pm2 logs DevConnect-backend --lines 50
 ```
 
 Then:
@@ -569,8 +569,8 @@ sudo ss -ltnp | grep :7777
 If the PM2 process was created incorrectly, recreate it:
 
 ``` bash
-pm2 delete DevTinder-backend
-pm2 start npm --name DevTinder-backend -- start
+pm2 delete DevConnect-backend
+pm2 start npm --name DevConnect-backend -- start
 ```
 
 Then:
@@ -589,14 +589,14 @@ pm2 status
 cd ~/DevConnect-backend
 git pull
 npm install
-pm2 restart DevTinder-backend
+pm2 restart DevConnect-backend
 pm2 status
 ```
 
 ### Logs
 
 ``` bash
-pm2 logs DevTinder-backend --lines 50
+pm2 logs DevConnect-backend --lines 50
 ```
 
 Exit:
@@ -609,9 +609,9 @@ Ctrl + C
 
 ``` bash
 pm2 status
-pm2 restart DevTinder-backend
-pm2 stop DevTinder-backend
-pm2 delete DevTinder-backend
+pm2 restart DevConnect-backend
+pm2 stop DevConnect-backend
+pm2 delete DevConnect-backend
 pm2 startup
 pm2 save
 ```
@@ -667,7 +667,7 @@ git pull
       ↓
 npm install (if dependencies changed)
       ↓
-pm2 restart DevTinder-backend
+pm2 restart DevConnect-backend
       ↓
 pm2 status
       ↓

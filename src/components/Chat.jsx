@@ -84,9 +84,9 @@ const Chat = () => {
             {/*  chats section */}
             <div className="flex-1 flex flex-col overflow-y-auto">
 
-                {chats.map((chat) => {
+                {chats.map((chat,index) => {
                     return (
-                        <div key={chat._id}
+                        <div key={index}
                             className={chat?.senderId?._id === user?._id || chat?.senderId === user?._id
                                 ? "chat chat-end  " : "chat chat-start  "}>
                             <div className="chat-header"> {chat.senderName} </div>

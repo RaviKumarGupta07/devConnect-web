@@ -115,7 +115,7 @@
         - npm install
         - npm start
         - npm install pm2 -g
-        - pm2 start npm --name DevTinder-backend -- start
+        - pm2 start npm --name DevConnect-backend -- start
         - pm2 status
         - NGINX
             - sudo nano /etc/nginx/sites-available/default
