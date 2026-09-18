@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../redux/connectionsSlice";
 import { Link } from "react-router";
+import { BsWechat } from "react-icons/bs";
 
 const Connections = () => {
     const dispatch = useDispatch();
@@ -28,13 +29,13 @@ const Connections = () => {
     return (
         <div className="">
             <div className="text-3xl font-semibold justify-center flex my-4">Connections</div>
-            <div className="w-1/2 m-auto my-2 flex flex-col gap-2">
+            <div className="w-full sm:w-1/2 m-auto my-2 px-2 flex flex-col gap-2 ">
                 {connections.map(user => {
                     const { _id, firstName, lastName, age, gender, about, skills, photoURL } = user;
                     return (
-                        <div className="flex bg-base-300 rounded-2xl " key={_id}>
+                        <div className="flex flex-col sm:flex-row pb-2 rounded-2xl bg-base-300" key={_id}>
                             {/* img */}
-                            <div className="shrink-0">
+                            <div className="shrink-0 flex justify-center">
                                 <img src={photoURL} alt="user-img" className="w-48 h-48 object-cover p-2 rounded-3xl" />
                             </div>
                             {/* details */}
@@ -42,14 +43,14 @@ const Connections = () => {
                                 <h2 className="text-xl font-bold">{firstName + " " + lastName}</h2>
                                 {age && gender && <h3> {age + "y " + gender} </h3>}
                                 {about && <p>{about}</p>}
-                                {skills && (skills.length > 0) && <div className="flex">
-                                    <h4 className="bg-primary badge mr-2">{"skills" + " : "}</h4>
+                                {skills && (skills.length > 0) && <div className="flex ">
+                                    <h4 className="bg-primary badge mr-2 shrink-0">{"skills" + " : "}</h4>
                                     <p className="badge bg-secondary overflow-x-auto"> {skills.join(" , ")} </p>
                                 </div>}
                             </div>
-                            <div className="my-auto">
-                                <button className="btn btn-success rounded mx-2 ">
-                                    <Link to={"/chat/"+_id} >Chat</Link>
+                            <div className="my-auto flex justify-center">
+                                <button className="btn btn-info rounded mx-2 font-semibold text-3xl">
+                                    <Link to={"/chat/"+_id} > <BsWechat/> </Link>
                                 </button>
                             </div>
                         </div>

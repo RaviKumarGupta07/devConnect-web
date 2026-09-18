@@ -40,11 +40,11 @@ const Requests = () => {
     return (
         <div className="">
             <div className="text-3xl font-semibold justify-center flex my-4">Received Requests</div>
-            <div className="w-1/2 m-auto my-2 flex flex-col gap-2">
+            <div className="p-2 sm:w-1/2 m-auto my-2 flex flex-col gap-2">
                 {requests.map(request => {
                     const { _id, firstName, lastName, age, gender, about, skills, photoURL } = request.fromUserId;
                     return (
-                        <div className="flex bg-base-300 rounded-2xl gap-6 p-2 items-center" key={_id}>
+                        <div className="flex flex-col sm:flex-row bg-base-300 rounded-2xl gap-6 p-2 items-center" key={_id}>
                             {/* img */}
                             <div className="shrink-0">
                                 <img src={photoURL} alt="user-img" className="w-48 h-48 object-cover p-2 rounded-3xl" />
@@ -52,9 +52,9 @@ const Requests = () => {
 
                             {/* details */}
                             <div className="p-2 flex flex-1 flex-col text-left">
-                                <h2 className="text-xl font-bold">{firstName + " " + lastName}</h2>
-                                {age && gender && <h3> {age + "y " + gender} </h3>}
-                                {about && <p>{about}</p>}
+                                <h2 className="text-xl font-extrabold">{firstName + " " + lastName}</h2>
+                                {age && gender && <h3 className="font-semibold"> {age + "y " + gender} </h3>}
+                                {about && <p className="text-sm">{about}</p>}
                                 {skills && (skills.length > 0) && <div className="flex">
                                     <h4 className="bg-primary badge mr-2">{"skills" + " : "}</h4>
                                     <p className="badge bg-secondary overflow-x-auto"> {skills.join(" , ")} </p>

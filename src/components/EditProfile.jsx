@@ -40,7 +40,7 @@ const EditProfile = ({ user }) => {
     }
 
     return (user && (
-        <div className="flex flex-row justify-center gap-4">
+        <div className="flex flex-col sm:flex-row sm:justify-center  sm:gap-4">
             {showToast && (<div className="toast toast-top toast-center z-10">
                 <div className="alert alert-success">
                     <span>Dear {firstName} , your profile updated successfully</span>
@@ -114,7 +114,7 @@ const EditProfile = ({ user }) => {
                     <p className="text-red-600">{error}</p>
                 </fieldset>
             </div>
-            <div>
+            <div className ="flex justify-center p-2">
                 <PreviewUserCard user={{ firstName, lastName, age, gender, skillsInput, about, photoURL }} />
             </div>
         </div>
