@@ -18,7 +18,7 @@ const Chat = () => {
 
     const [chats, setChats] = useState([]);
     const [newMessage, setNewMessage] = useState("");
-    const [newMsgAlert, setNewMsgAlert] = useState(true);
+    const [newMsgAlert, setNewMsgAlert] = useState(false);
 
 
     const token = Cookies.get('token');
@@ -62,6 +62,9 @@ const Chat = () => {
             setChats((prev) => [...prev, { senderName, message, senderId }]);
             if (senderId != user._id) {
                 setNewMsgAlert(true);
+                setTimeout(()=>{
+                    setNewMsgAlert(false);
+                },3000)
             }
         })
 
