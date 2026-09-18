@@ -128,5 +128,19 @@
             - sudo nginx -t
             - sudo systemctl reload nginx
 
-
-
+- live chat feaure
+    - build chat.jsx
+    - for chat fecture 
+        - npm pckg socket.io-client setup in frontend
+            - chat heading
+            - chats
+            - if new msg alert popup for 3 sec
+            - <input> <send btn>
+            
+        - npm pckg socket.io setup in backend
+            - event emit and handiling logic 
+            - then chat model created 
+            - while messageSend event emits then chats are saved inside database
+            - created get /chats/:receiverId api to get all the chats of the user
+                - the whole setup is inside socketIo_setup_guide.md
+        
